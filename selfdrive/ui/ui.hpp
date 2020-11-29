@@ -146,6 +146,7 @@ typedef struct UIScene {
   {
       bool steerOverride;
       float output_scale;
+      int   cpuPerc;
   } kegman;
 
   // dev ui

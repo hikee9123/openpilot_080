@@ -203,10 +203,46 @@ static void update_track_data(UIState *s, const cereal::ModelDataV2::XYZTData::R
   pvd->cnt = v - pvd->v;
 }
 
-static void ui_draw_track(UIState *s, track_vertices_data *pvd) {
+static void ui_draw_track(UIState *s, track_vertices_data *pvd) 
+{
+  /*
   NVGpaint track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h * .4,
                                         COLOR_WHITE, COLOR_WHITE_ALPHA(0));
   ui_draw_line(s, &pvd->v[0], pvd->cnt, nullptr, &track_bg);
+  */
+
+  // kegman
+  if (pvd->cnt == 0) return;
+
+  nvgBeginPath(s->vg);
+  nvgMoveTo(s->vg, pvd->v[0].x, pvd->v[0].y);
+  for (int i=1; i<pvd->cnt; i++) {
+    nvgLineTo(s->vg, pvd->v[i].x, pvd->v[i].y);
+  }
+  nvgClosePath(s->vg);
+
+  NVGpaint track_bg;
+  if (s->scene.controls_state.getEnabled()) {
+    // Draw colored MPC track Kegman's
+    if (s->scene.steerOverride) {
+      track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,
+        nvgRGBA(0, 191, 255, 255), nvgRGBA(0, 95, 128, 50));
+    } else {
+      int torque_scale = (int)fabs(510*(float)s->scene.output_scale);
+      int red_lvl = fmin(255, torque_scale);
+      int green_lvl = fmin(255, 510-torque_scale);
+      track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,
+        nvgRGBA(          red_lvl,            green_lvl,  0, 255),
+        nvgRGBA((int)(0.5*red_lvl), (int)(0.5*green_lvl), 0, 50));
+    }
+  } else {
+    // Draw white vision track
+    track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h * .4,
+                                        COLOR_WHITE, COLOR_WHITE_ALPHA(0));
+  }
+
+  nvgFillPaint(s->vg, track_bg);
+  nvgFill(s->vg); 
 }
 
 static void draw_frame(UIState *s) {
@@ -351,7 +387,7 @@ static void ui_draw_vision_maxspeed(UIState *s) {
     snprintf(maxspeed_str, sizeof(maxspeed_str), "%d", maxspeed_calc);
     ui_draw_text(s->vg, text_x, 242, maxspeed_str, 48 * 2.5, COLOR_WHITE, s->font_sans_bold);
   } else {
-    ui_draw_text(s->vg, text_x, 242, "N/A", 42 * 2.5, COLOR_WHITE_ALPHA(100), s->font_sans_semibold);
+    ui_draw_text(s->vg, text_x, 242, "-", 42 * 2.5, COLOR_WHITE_ALPHA(100), s->font_sans_semibold);
   }
 }
 
@@ -382,15 +418,17 @@ static void ui_draw_debug(UIState *s)
   y_pos = 100; 
 
   ui_print( s, x_pos, y_pos+0,   "sR:%.2f,  Fan:%d", scene.liveParams.steerRatio, scene.fanSpeed );
-  ui_print( s, x_pos, y_pos+50,  "aO:%.2f, %.2f", scene.liveParams.angleOffset, scene.pathPlan.angleOffset );
-  ui_print( s, x_pos, y_pos+100, "aA:%.2f", scene.liveParams.angleOffsetAverage );
-  ui_print( s, x_pos, y_pos+150, "sF:%.2f", scene.liveParams.stiffnessFactor );
+  ui_print( s, x_pos, y_pos+50,  "aO:%.2f, %.2f", scene.liveParams.angleOffset, scene.liveParams.angleOffsetAverage );
+  ui_print( s, x_pos, y_pos+100, "sF:%.2f", scene.liveParams.stiffnessFactor );
   //ui_print( s, x_pos, y_pos+200, "gB:%.2f, yA:%.2f", scene.liveParams.gyroBias, scene.liveParams.yawRate  );
   //ui_print( s, x_pos, y_pos+250, "pS:%.2f", scene.liveParams.posenetSpeed );
-  ui_print( s, x_pos, y_pos+200, "lW:%.2f", scene.pathPlan.laneWidth );
-  ui_print( s, x_pos, y_pos+250, "prob:%.2f, %.2f", scene.pathPlan.lProb, scene.pathPlan.rProb );
-  ui_print( s, x_pos, y_pos+300, "Poly:%.2f, %.2f", scene.pathPlan.lPoly, scene.pathPlan.rPoly );
-  ui_print( s, x_pos, y_pos+350, "edge:%.2f, %.2f", scene.road_edge_stds[0], scene.road_edge_stds[1] );
+  ui_print( s, x_pos, y_pos+200, "prob:%.2f, %.2f", scene.pathPlan.lProb, scene.pathPlan.rProb );
+  ui_print( s, x_pos, y_pos+250, "prob:%.2f, %.2f, %.2f, %.2f", scene.lane_line_probs[0], scene.lane_line_probs[1], scene.lane_line_probs[2], scene.lane_line_probs[3] );
+  ui_print( s, x_pos, y_pos+300, "edge:%.2f, %.2f", scene.road_edge_stds[0], scene.road_edge_stds[1] );
+
+  ui_print( s, x_pos, y_pos+400, "lW:%.2f  cpuPerc:%d", scene.pathPlan.laneWidth, scene.kegman.cpuPerc );
+  ui_print( s, x_pos, y_pos+450, "Poly:%.2f, %.2f", scene.pathPlan.lPoly, scene.pathPlan.rPoly );
+
 
   
 

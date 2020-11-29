@@ -256,6 +256,7 @@ void update_sockets(UIState *s) {
     auto cpuList = scene.thermal.getCpu();
     scene.maxBatTemp = scene.thermal.getBat();
     scene.maxCpuTemp = cpuList[0]; 
+    scene.kegman.cpuPerc = scene.thermal.getCpuPerc();
 
     scene.batteryPercent = scene.thermal.getBatteryPercent();
     scene.fanSpeed = scene.thermal.getFanSpeed();    

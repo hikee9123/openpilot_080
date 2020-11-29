@@ -224,11 +224,11 @@ static void ui_draw_track(UIState *s, track_vertices_data *pvd)
   NVGpaint track_bg;
   if (s->scene.controls_state.getEnabled()) {
     // Draw colored MPC track Kegman's
-    if (s->scene.steerOverride) {
+    if (s->scene.kegman.steerOverride) {
       track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,
         nvgRGBA(0, 191, 255, 255), nvgRGBA(0, 95, 128, 50));
     } else {
-      int torque_scale = (int)fabs(510*(float)s->scene.output_scale);
+      int torque_scale = (int)fabs(510*(float)s->scene.kegman.output_scale);
       int red_lvl = fmin(255, torque_scale);
       int green_lvl = fmin(255, 510-torque_scale);
       track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,

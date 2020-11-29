@@ -317,7 +317,7 @@ class CarState(CarStateBase):
         ("CF_Lca_IndLeft", "LCA11", 0),
         ("CF_Lca_IndRight", "LCA11", 0),
       ]
-      #checks += [("LCA11", 50)]
+      checks += [("LCA11", 50)]
 
     if CP.carFingerprint in EV_HYBRID:
       signals += [
@@ -401,11 +401,11 @@ class CarState(CarStateBase):
       ("CR_Mdps_StrColTq", "MDPS12", 0),
       ("CF_Mdps_ToiActive", "MDPS12", 0),
       ("CF_Mdps_ToiUnavail", "MDPS12", 0),
-      ("CF_Mdps_MsgCount2", "MDPS12", 0),  #
-      ("CF_Mdps_Chksum2", "MDPS12", 0),    #
-      ("CF_Mdps_ToiFlt", "MDPS12", 0),     #
-      ("CF_Mdps_SErr", "MDPS12", 0),       #
-      ("CR_Mdps_StrTq", "MDPS12", 0),      #          
+     # ("CF_Mdps_MsgCount2", "MDPS12", 0),  #
+     # ("CF_Mdps_Chksum2", "MDPS12", 0),    #
+     # ("CF_Mdps_ToiFlt", "MDPS12", 0),     #
+     # ("CF_Mdps_SErr", "MDPS12", 0),       #
+     # ("CR_Mdps_StrTq", "MDPS12", 0),      #          
       ("CF_Mdps_FailStat", "MDPS12", 0),
       ("CR_Mdps_OutTq", "MDPS12", 0),
 
@@ -434,7 +434,7 @@ class CarState(CarStateBase):
       ("SAS11", 100),
       ("SCC11", 50),
       ("SCC12", 50),
-      ("LCA11", 50),
+     # ("LCA11", 50),
     ]
 
     signals, checks = CarState.get_parser_ev_hybrid( CP, signals, checks )
@@ -454,7 +454,7 @@ class CarState(CarStateBase):
       ("CF_Lkas_LdwsRHWarning", "LKAS11", 0),
       ("CF_Lkas_HbaLamp", "LKAS11", 0),
       ("CF_Lkas_FcwBasReq", "LKAS11", 0),
-      ("CF_Lkas_ToiFlt", "LKAS11", 0),  #  append
+      #("CF_Lkas_ToiFlt", "LKAS11", 0),  #  append
       ("CF_Lkas_HbaSysState", "LKAS11", 0),
       ("CF_Lkas_FcwOpt", "LKAS11", 0),
       ("CF_Lkas_HbaOpt", "LKAS11", 0),

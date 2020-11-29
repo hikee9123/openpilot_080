@@ -276,7 +276,8 @@ class CarController():
     can_sends.append( create_lkas11(self.packer, self.lkas11_cnt, self.car_fingerprint, apply_steer, steer_req,
                                    CS.lkas11, sys_warning, self.hud_sys_state, c ) )
 
-    can_sends.append( create_mdps12(self.packer, frame, CS.mdps12) )
+    if steer_req:
+      can_sends.append( create_mdps12(self.packer, frame, CS.mdps12) )
 
     str_log1 = 'torg:{:5.0f}/{:5.0f}  CV={:5.1f}/{:5.1f}'.format( apply_steer, new_steer,  self.model_speed, self.model_sum  )
     str_log2 = 'limit={:.0f} tm={:.1f} gap={:.0f}'.format( apply_steer_limit, self.timer1.sampleTime(), CS.cruiseGapSet  )

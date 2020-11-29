@@ -184,6 +184,10 @@ class PathPlanner():
     atomTuning = CP.atomTuning
     lateralsRatom = CP.lateralsRatom
 
+    laneLineProbs = sm['modelV2'].laneLineProbs
+    leftLaneProb = laneLineProbs[0] < 0.01
+    rightLaneProb = laneLineProbs[3] < 0.01
+
     cruiseState  = sm['carState'].cruiseState
     leftBlindspot = sm['carState'].leftBlindspot
     rightBlindspot = sm['carState'].rightBlindspot
@@ -222,12 +226,17 @@ class PathPlanner():
       self.lane_change_state = LaneChangeState.off
       self.lane_change_direction = LaneChangeDirection.none
     else:
-      torque_applied = sm['carState'].steeringPressed and \
+      
+
+      torque_applied = steeringPressed and \
                        ((steeringTorque > 0 and self.lane_change_direction == LaneChangeDirection.left) or
                         (steeringTorque < 0 and self.lane_change_direction == LaneChangeDirection.right))
 
-      blindspot_detected = ((sm['carState'].leftBlindspot and self.lane_change_direction == LaneChangeDirection.left) or
-                            (sm['carState'].rightBlindspot and self.lane_change_direction == LaneChangeDirection.right))
+      blindspot_detected = ((leftBlindspot and self.lane_change_direction == LaneChangeDirection.left) or
+                            (rightBlindspot and self.lane_change_direction == LaneChangeDirection.right))
+
+      laneLineProbs_detected = ((leftLaneProb and self.lane_change_direction == LaneChangeDirection.left) or
+                            (rightLaneProb and self.lane_change_direction == LaneChangeDirection.right))                            
 
       lane_change_prob = self.LP.l_lane_change_prob + self.LP.r_lane_change_prob
 
@@ -246,7 +255,7 @@ class PathPlanner():
       elif self.lane_change_state == LaneChangeState.preLaneChange:
         if not one_blinker or below_lane_change_speed:
           self.lane_change_state = LaneChangeState.off
-        elif torque_applied and not blindspot_detected:
+        elif torque_applied and not blindspot_detected and not laneLineProbs_detected:
           self.lane_change_state = LaneChangeState.laneChangeStarting
 
       # starting

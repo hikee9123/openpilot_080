@@ -221,6 +221,8 @@ class DriverStatus():
   def update(self, events, driver_engaged, ctrl_active, standstill):
     if (driver_engaged and self.awareness > 0) or not ctrl_active:
       # reset only when on disengagement if red reached
+      self.terminal_time = 0
+      self.terminal_alert_cnt = 0          
       self.awareness = 1.
       self.awareness_active = 1.
       self.awareness_passive = 1.
@@ -248,6 +250,12 @@ class DriverStatus():
       self.awareness = max(self.awareness - self.step_change, -0.1)
 
     alert = None
+    if standstill:
+      self.terminal_time = 0
+      self.awareness = 1.
+      self.awareness_active = 1.
+      self.awareness_passive = 1.
+          
     if self.awareness <= 0.:
       # terminal red alert: disengagement required
       alert = EventName.driverDistracted if self.active_monitoring_mode else EventName.driverUnresponsive

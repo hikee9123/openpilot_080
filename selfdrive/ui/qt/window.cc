@@ -24,13 +24,13 @@
 volatile sig_atomic_t do_exit = 0;
 
 static void handle_display_state(UIState *s, int dt, bool user_input) {
-  static int awake_timeout = 0;
-  awake_timeout = std::max(awake_timeout-dt, 0);
+  //static int awake_timeout = 0;
+  s->awake_timeout = std::max(s->awake_timeout-dt, 0);
 
   if (user_input || s->ignition || s->started) {
     s->awake = true;
-    awake_timeout = 30*UI_FREQ;
-  } else if (awake_timeout == 0){
+    s->awake_timeout = 30*UI_FREQ;
+  } else if (s->awake_timeout == 0){
     s->awake = false;
   }
 }

@@ -346,6 +346,7 @@ void update_sockets(UIState *s) {
     scene.liveParams.posenetSpeed = data.getPosenetSpeed();
   }
   
+/*
   if(sm.updated("liveMpc")) 
   {
     auto data = sm["liveMpc"].getLiveMpc();
@@ -356,7 +357,7 @@ void update_sockets(UIState *s) {
        scene.mpc_y[i] = y_list[i];
     }
   }
-
+*/
 
    if (sm.updated("pathPlan"))
    {

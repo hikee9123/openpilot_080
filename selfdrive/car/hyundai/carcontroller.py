@@ -264,9 +264,6 @@ class CarController():
     self.apply_steer_last = apply_steer
 
     sys_warning, self.hud_sys_state = self.process_hud_alert( lkas_active, c )
-    #sys_warning, sys_state, left_lane_warning, right_lane_warning = \
-    #  process_hud_alert(enabled, self.car_fingerprint, visual_alert,
-    #                    left_lane, right_lane, left_lane_depart, right_lane_depart)
 
     if frame == 0: # initialize counts from last received count signals
       self.lkas11_cnt = CS.lkas11["CF_Lkas_MsgCount"] + 1

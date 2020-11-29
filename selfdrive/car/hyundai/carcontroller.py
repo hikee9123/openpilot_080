@@ -276,7 +276,7 @@ class CarController():
     can_sends.append( create_lkas11(self.packer, self.lkas11_cnt, self.car_fingerprint, apply_steer, steer_req,
                                    CS.lkas11, sys_warning, self.hud_sys_state, c ) )
 
-    #can_sends.append( create_mdps12(self.packer, frame, CS.mdps12) )
+    can_sends.append( create_mdps12(self.packer, frame, CS.mdps12) )
 
     str_log1 = 'torg:{:5.0f}/{:5.0f}  CV={:5.1f}/{:5.1f}'.format( apply_steer, new_steer,  self.model_speed, self.model_sum  )
     str_log2 = 'limit={:.0f} tm={:.1f} gap={:.0f}'.format( apply_steer_limit, self.timer1.sampleTime(), CS.cruiseGapSet  )
@@ -288,8 +288,8 @@ class CarController():
       trace1.printf2( '{}'.format( str_log2 ) )
 
 
-    #if pcm_cancel_cmd:
-    #  can_sends.append(create_clu11(self.packer, frame, CS.clu11, Buttons.CANCEL))
+    if pcm_cancel_cmd:
+      can_sends.append(create_clu11(self.packer, frame, CS.clu11, Buttons.CANCEL))
     if CS.out.cruiseState.standstill:
       # run only first time when the car stopped
       if self.last_lead_distance == 0 or not CP.lateralsRatom.opkrAutoResume:

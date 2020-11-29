@@ -401,11 +401,11 @@ class CarState(CarStateBase):
       ("CR_Mdps_StrColTq", "MDPS12", 0),
       ("CF_Mdps_ToiActive", "MDPS12", 0),
       ("CF_Mdps_ToiUnavail", "MDPS12", 0),
-     # ("CF_Mdps_MsgCount2", "MDPS12", 0),  #
-     # ("CF_Mdps_Chksum2", "MDPS12", 0),    #
-     # ("CF_Mdps_ToiFlt", "MDPS12", 0),     #
-     # ("CF_Mdps_SErr", "MDPS12", 0),       #
-     # ("CR_Mdps_StrTq", "MDPS12", 0),      #          
+      ("CF_Mdps_MsgCount2", "MDPS12", 0),  #
+      ("CF_Mdps_Chksum2", "MDPS12", 0),    #
+      #("CF_Mdps_ToiFlt", "MDPS12", 0),     #
+      #("CF_Mdps_SErr", "MDPS12", 0),       #
+      #("CR_Mdps_StrTq", "MDPS12", 0),      #          
       ("CF_Mdps_FailStat", "MDPS12", 0),
       ("CR_Mdps_OutTq", "MDPS12", 0),
 
@@ -454,7 +454,7 @@ class CarState(CarStateBase):
       ("CF_Lkas_LdwsRHWarning", "LKAS11", 0),
       ("CF_Lkas_HbaLamp", "LKAS11", 0),
       ("CF_Lkas_FcwBasReq", "LKAS11", 0),
-      #("CF_Lkas_ToiFlt", "LKAS11", 0),  #  append
+      ("CF_Lkas_ToiFlt", "LKAS11", 0),  #  append
       ("CF_Lkas_HbaSysState", "LKAS11", 0),
       ("CF_Lkas_FcwOpt", "LKAS11", 0),
       ("CF_Lkas_HbaOpt", "LKAS11", 0),

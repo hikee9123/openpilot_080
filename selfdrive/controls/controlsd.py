@@ -493,7 +493,7 @@ class Controls:
     self.AM.process_alerts(self.sm.frame, clear_event)
     CC.hudControl.visualAlert = self.AM.visual_alert
 
-    if not self.hyundai_lkas:
+    if not self.hyundai_lkas and self.CI.pcm_enable_cmd:
       # send car controls over can
       can_sends = self.CI.apply(CC, self.sm, self.CP )
       self.model_sum  = self.CI.CC.model_sum

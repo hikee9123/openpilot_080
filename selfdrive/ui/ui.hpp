@@ -193,7 +193,6 @@ typedef struct UIScene {
 
 
   struct LateralsRatom {
-    int learnerParams;
     float deadzone;
     float steerOffset;
     float cameraOffset;

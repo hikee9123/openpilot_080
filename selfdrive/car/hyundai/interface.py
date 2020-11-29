@@ -256,7 +256,6 @@ class CarInterface(CarInterfaceBase):
     ret.lateralsRatom.deadzone = ATOMC.sR_pid_deadzone
     ret.lateralsRatom.steerOffset = ATOMC.steerOffset
     ret.lateralsRatom.cameraOffset = ATOMC.cameraOffset
-    ret.lateralsRatom.learnerParams = ATOMC.ap_learner
     ret.lateralsRatom.opkrAutoResume = ATOMC.ap_autoReasume
     ret.lateralsRatom.opkrAutoScreenOff = ATOMC.ap_autoScnOffTime
 
@@ -314,7 +313,6 @@ class CarInterface(CarInterfaceBase):
     CP.lateralsRatom.deadzone = ATOMC.sR_pid_deadzone      # OK
     CP.lateralsRatom.steerOffset = ATOMC.steerOffset       # OK
     CP.lateralsRatom.cameraOffset = ATOMC.cameraOffset
-    CP.lateralsRatom.learnerParams = ATOMC.ap_learner
     CP.lateralsRatom.opkrAutoResume = ATOMC.ap_autoReasume
     CP.lateralsRatom.opkrAutoScreenOff = ATOMC.ap_autoScnOffTime
 

@@ -27,7 +27,6 @@ class AtomConf():
     self.steerLimitTimer = 0.4    
     self.steerActuatorDelay = 0.1
     self.cameraOffset = 0.06
-    self.ap_learner = 1
     self.ap_autoReasume = 1
     self.ap_autoScnOffTime = 0
 
@@ -36,7 +35,6 @@ class AtomConf():
 
   def read_tune(self):
     conf = self.kegman.read_config()
-    self.ap_learner = conf['ap_learner']
     self.ap_autoReasume = conf['ap_autoReasume']
     self.ap_autoScnOffTime = conf['ap_autoScnOffTime']
     self.tun_type   = conf['tun_type']

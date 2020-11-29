@@ -2,13 +2,12 @@ import json
 import os
 
 
-json_file_name = '/data/atom_0761.json'
+json_file_name = '/data/atom_080.json'
 
 class kegman_conf():
   def __init__(self, CP=None):
     self.config = None
     self.init = { 
-        "ap_learner": 1,
         "ap_autoReasume": 1,
         "ap_autoScnOffTime": 10,
         "tun_type": "lqr",

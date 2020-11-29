@@ -288,9 +288,9 @@ class CarController():
       trace1.printf2( '{}'.format( str_log2 ) )
 
 
-    if pcm_cancel_cmd:
-      can_sends.append(create_clu11(self.packer, frame, CS.clu11, Buttons.CANCEL))
-    elif CS.out.cruiseState.standstill:
+    #if pcm_cancel_cmd:
+    #  can_sends.append(create_clu11(self.packer, frame, CS.clu11, Buttons.CANCEL))
+    if CS.out.cruiseState.standstill:
       # run only first time when the car stopped
       if self.last_lead_distance == 0 or not CP.lateralsRatom.opkrAutoResume:
         # get the lead distance from the Radar

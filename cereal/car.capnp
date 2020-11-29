@@ -441,11 +441,11 @@ struct CarParams {
 
 
   struct LateralsRatom {
-    deadzone @1 :Float32;
-    steerOffset @2 :Float32;
-    cameraOffset @3 :Float32;
-    opkrAutoResume @4 :Int16;
-    opkrAutoScreenOff @5 :Int16;
+    deadzone @0 :Float32;
+    steerOffset @1 :Float32;
+    cameraOffset @2 :Float32;
+    opkrAutoResume @3 :Int16;
+    opkrAutoScreenOff @4 :Int16;
   }
 
 

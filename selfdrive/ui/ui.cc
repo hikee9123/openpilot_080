@@ -364,12 +364,12 @@ void update_sockets(UIState *s) {
     scene.path_plan = sm["pathPlan"].getPathPlan();
 
     scene.pathPlan.laneWidth = scene.path_plan.getLaneWidth();
-    scene.pathPlan.steerRatio = scene.path_plan.getSteerRatio();
+   // scene.pathPlan.steerRatio = scene.path_plan.getSteerRatio();
     scene.pathPlan.cProb = scene.path_plan.getCProb();
     scene.pathPlan.lProb = scene.path_plan.getLProb();
     scene.pathPlan.rProb = scene.path_plan.getRProb();
     scene.pathPlan.angleOffset = scene.path_plan.getAngleOffset();
-    scene.pathPlan.steerActuatorDelay = scene.path_plan.getSteerActuatorDelay();
+  //  scene.pathPlan.steerActuatorDelay = scene.path_plan.getSteerActuatorDelay();
 
     auto l_list = scene.path_plan.getLPoly();
     auto r_list = scene.path_plan.getRPoly();

@@ -381,12 +381,12 @@ static void ui_draw_debug(UIState *s)
   x_pos = ui_viz_rx + 300;
   y_pos = 100; 
 
-  ui_print( s, x_pos, y_pos+0,   "sR:%.2f, %.2f", scene.liveParams.steerRatio, scene.pathPlan.steerRatio );
+  ui_print( s, x_pos, y_pos+0,   "sR:%.2f", scene.liveParams.steerRatio );
   ui_print( s, x_pos, y_pos+50,  "aO:%.2f, %.2f", scene.liveParams.angleOffset, scene.pathPlan.angleOffset );
   ui_print( s, x_pos, y_pos+100, "aA:%.2f", scene.liveParams.angleOffsetAverage );
   ui_print( s, x_pos, y_pos+150, "sF:%.2f", scene.liveParams.stiffnessFactor );
   ui_print( s, x_pos, y_pos+200, "gB:%.2f, yA:%.2f", scene.liveParams.gyroBias, scene.liveParams.yawRate  );
-  ui_print( s, x_pos, y_pos+250, "aD:%.2f, pS:%.2f", scene.pathPlan.steerActuatorDelay, scene.liveParams.posenetSpeed );
+  ui_print( s, x_pos, y_pos+250, "pS:%.2f", scene.liveParams.posenetSpeed );
   ui_print( s, x_pos, y_pos+300, "lW:%.2f", scene.pathPlan.laneWidth );
   ui_print( s, x_pos, y_pos+350, "prob:%.2f, %.2f", scene.pathPlan.lProb, scene.pathPlan.rProb );
   ui_print( s, x_pos, y_pos+400, "Poly:%.2f, %.2f", scene.pathPlan.lPoly, scene.pathPlan.rPoly );

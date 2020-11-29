@@ -221,8 +221,8 @@ typedef struct UIScene {
   struct _PathPlan
   {
     float laneWidth;
-    float steerRatio;
-    float steerActuatorDelay;
+   // float steerRatio;
+   // float steerActuatorDelay;
 
     float cProb;
     float lProb;

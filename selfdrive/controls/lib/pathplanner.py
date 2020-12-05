@@ -185,18 +185,16 @@ class PathPlanner():
     lateralsRatom = CP.lateralsRatom
 
 
-    modelV2 = sm['modelV2'].modelV2
-    laneLineProbs = modelV2.laneLineProbs
-
+    laneLineProbs = sm['modelV2'].laneLineProbs
 
     leftLaneProb =  False  # laneLineProbs[0] < 0.01
     rightLaneProb = False  # laneLineProbs[3] < 0.01
 
-    if laneLineProbs[0] < 0.01:
-      leftLaneProb =  True
+    #if laneLineProbs[0] < 0.01:
+    #  leftLaneProb =  True
 
-    if laneLineProbs[3] < 0.01:
-      rightLaneProb =  True
+    #if laneLineProbs[3] < 0.01:
+    #  rightLaneProb =  True
 
 
     cruiseState  = sm['carState'].cruiseState

@@ -185,7 +185,7 @@ class PathPlanner():
     lateralsRatom = CP.lateralsRatom
 
 
-    modelV2 = sm['modelV2'].ModelV2
+    modelV2 = sm['modelV2'].modelV2
     laneLineProbs = modelV2.laneLineProbs
 
 

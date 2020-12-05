@@ -184,7 +184,9 @@ class PathPlanner():
     atomTuning = CP.atomTuning
     lateralsRatom = CP.lateralsRatom
 
-    laneLineProbs = sm['modelV2'].laneLineProbs
+
+    modelV2 = sm['modelV2'].ModelV2
+    laneLineProbs = modelV2.laneLineProbs
 
 
     leftLaneProb =  False  # laneLineProbs[0] < 0.01
